@@ -1,0 +1,95 @@
+[
+  {
+    "event_id": "EVT-INIT",
+    "timestamp": "2026-10-29T15:23:44.188020+00:00",
+    "actor": "System",
+    "role": "Engine",
+    "action": "ECO_INTAKE",
+    "entity_type": "ECO",
+    "entity_id": "ECO-DEMO-001",
+    "details": {
+      "status": "loaded"
+    },
+    "artifact_refs": [],
+    "prev_event_hash": "GENESIS_00000000000000000000000000000000",
+    "event_hash": "e0f17cecea90d2fceefaea6563e867ab82ad04e587195416ab60236bf833c01d"
+  },
+  {
+    "event_id": "EVT-DISC",
+    "timestamp": "2026-10-29T15:23:44.193018+00:00",
+    "actor": "System",
+    "role": "Engine",
+    "action": "IMPACT_DISCOVERY_COMPLETED",
+    "entity_type": "INVENTORY",
+    "entity_id": "ECO-DEMO-001",
+    "details": {
+      "orphans": 1,
+      "reachable": 4
+    },
+    "artifact_refs": [],
+    "prev_event_hash": "e0f17cecea90d2fceefaea6563e867ab82ad04e587195416ab60236bf833c01d",
+    "event_hash": "75ec9351dc98bde9bef1b56c7a19a409b2e44435722a42a0731930640119c292"
+  },
+  {
+    "event_id": "EVT-DISP",
+    "timestamp": "2026-10-29T15:23:44.200018+00:00",
+    "actor": "Dr. Sarah Chen",
+    "role": "Regulatory Affairs Specialist",
+    "action": "ORPHAN_DISPOSITION_RECORDED",
+    "entity_type": "LABEL_VARIANT",
+    "entity_id": "LV-ORPHAN-001",
+    "details": {
+      "disposition": "AFFECTED"
+    },
+    "artifact_refs": [],
+    "prev_event_hash": "75ec9351dc98bde9bef1b56c7a19a409b2e44435722a42a0731930640119c292",
+    "event_hash": "ece9f7ee488f3cb722eba8883c24cf9a440329aea7dfbcff25380109ab105776"
+  },
+  {
+    "event_id": "EVT-DRAFT",
+    "timestamp": "2026-10-29T15:23:44.208684+00:00",
+    "actor": "System",
+    "role": "Engine",
+    "action": "LABEL_DRAFT_GENERATED",
+    "entity_type": "LABEL_VARIANT",
+    "entity_id": "LV-US-STER-001",
+    "details": {
+      "shelf_life": "36 Months"
+    },
+    "artifact_refs": [],
+    "prev_event_hash": "ece9f7ee488f3cb722eba8883c24cf9a440329aea7dfbcff25380109ab105776",
+    "event_hash": "724b4a4dbdfe7e1c6c59a93e10768058546830930bf3efbf94b14df88e961bae"
+  },
+  {
+    "event_id": "EVT-RULES",
+    "timestamp": "2026-10-29T15:23:44.219420+00:00",
+    "actor": "System",
+    "role": "Engine",
+    "action": "RULE_VALIDATION_EXECUTED",
+    "entity_type": "RULES",
+    "entity_id": "ALL",
+    "details": {
+      "failed": 0,
+      "passed": 4
+    },
+    "artifact_refs": [],
+    "prev_event_hash": "724b4a4dbdfe7e1c6c59a93e10768058546830930bf3efbf94b14df88e961bae",
+    "event_hash": "08cc9bd4618b2bf2163c901a6a300cc519a59bbdb610f01ee0fa9a68cb594d49"
+  },
+  {
+    "event_id": "EVT-APP",
+    "timestamp": "2026-10-29T15:23:44.227542+00:00",
+    "actor": "Dr. Sarah Chen",
+    "role": "QA Director",
+    "action": "HUMAN_REVIEW_RECORDED",
+    "entity_type": "LABEL_VARIANT",
+    "entity_id": "LV-US-STER-001",
+    "details": {
+      "disposition": "APPROVED",
+      "sig": "SIG-DEMO-QA-4402"
+    },
+    "artifact_refs": [],
+    "prev_event_hash": "08cc9bd4618b2bf2163c901a6a300cc519a59bbdb610f01ee0fa9a68cb594d49",
+    "event_hash": "ffa432db0a25798a2288d8e967c628c20aca0c012639eaf2273e41bdcbb49ce3"
+  }
+]

@@ -1,0 +1,47 @@
+================================================================================
+ENGINEERING CHANGE ORDER: ECO-DEMO-001
+================================================================================
+ECO Number: ECO-DEMO-001
+Title: Extension of Qualified Sterile Shelf Life for CardioGraft Vascular Sealant
+Product Family: PF-CG-01 (CardioGraft Vascular Sealant)
+Change Type: Labeling Specification Update
+Change Category: Packaging and Shelf Life Extension
+Originator: Dr. Elena Vance, Senior Packaging Systems Engineer
+Regulatory Approval Ref: REG-2026-CG-00912
+Effective Date: 2026-11-15
+Target Markets: US (FDA 510(k) K240891), EU (MDR CE 712034)
+
+1. CHANGE DESCRIPTION:
+Based on completed real-time aging protocol (TR-2026-881) and accelerated stability
+validation in accordance with ISO 11607-1:2019 and ASTM F1980-21, the qualified
+sterile shelf life for all CardioGraft Vascular Sealant sterile packaging configurations
+is extended from 24 months to 36 months.
+
+2. SPECIFIC LABEL ATTRIBUTE CHANGES:
+- Attribute: Baseline Sterile Shelf Life
+  Previous Value: 24 Months
+  Proposed Value: 36 Months
+  Justification: Real-time aging test report TR-2026-881 demonstrates package integrity,
+  seal strength >1.5 N/mm, and barrier efficacy at 36 months post-sterilization (EO).
+
+- Attribute: Storage Conditions
+  Previous Value: Store between 2°C and 8°C. Do not freeze.
+  Proposed Value: Store between 2°C and 8°C. Do not freeze.
+  Justification: Preserved without modification.
+
+- Attribute: Sterilization Method
+  Current Value: Ethylene Oxide (EO)
+  Proposed Value: Ethylene Oxide (EO)
+  Justification: Preserved.
+
+3. SCOPE AND APPLICABILITY:
+This change applies to all primary sterile pouches and secondary shelf cartons
+manufactured for the CardioGraft Vascular Sealant product family (PF-CG-01).
+Tertiary shipping containers and standalone unsterilized literature (IFUs) that
+do not carry sterile expiration dates are excluded from shelf-life label updates.
+
+4. APPROVAL SIGN-OFF:
+Quality Assurance: Approved (QA-SIGN-4402)
+Regulatory Affairs: Approved (RA-SIGN-9104)
+Manufacturing Operations: Approved (OPS-SIGN-1288)
+================================================================================

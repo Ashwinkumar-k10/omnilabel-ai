@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  omnilabel-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: omnilabel-ai-engine
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./data:/app/data
+      - ./evidence:/app/evidence
+    restart: unless-stopped

@@ -1,0 +1,92 @@
+{
+  "manifest_version": "1.0.0",
+  "eco_id": "ECO-DEMO-001",
+  "created_at": "2026-10-29T12:00:00Z",
+  "description": "Pre-frozen ground-truth acceptance manifest for OmniLabel AI verification",
+  "portfolio": {
+    "total_variants": 8,
+    "affected_variants": [
+      "LV-US-STER-001",
+      "LV-EU-STER-001",
+      "LV-US-CART-001",
+      "LV-EU-CART-001",
+      "LV-ORPHAN-001"
+    ],
+    "unaffected_variants": [
+      "LV-US-SHIP-001",
+      "LV-US-IFU-001",
+      "LV-EU-IFU-001"
+    ],
+    "forward_graph_reachable": [
+      "LV-US-STER-001",
+      "LV-EU-STER-001",
+      "LV-US-CART-001",
+      "LV-EU-CART-001"
+    ],
+    "severed_edge_variants": [
+      "LV-ORPHAN-001"
+    ],
+    "expected_orphan_scan_candidates": [
+      "LV-ORPHAN-001"
+    ]
+  },
+  "extraction": {
+    "eco_id": "ECO-DEMO-001",
+    "product_family_id": "PF-CG-01",
+    "previous_shelf_life": "24 Months",
+    "proposed_shelf_life": "36 Months",
+    "storage_condition": "Store between 2°C and 8°C. Do not freeze."
+  },
+  "seeded_critical_defects": [
+    {
+      "defect_id": "DEFECT-EXPIRY-MATH",
+      "rule_id": "RULE-EXPIRY-CALC",
+      "description": "Expiry date arithmetic mismatch: manufacturing date 2026-11-01 + 36 months calculated as 2028-11-01 (24 mo) instead of 2029-11-01",
+      "expected_severity": "CRITICAL_RULE_FAILURE",
+      "expected_outcome": "FAIL"
+    },
+    {
+      "defect_id": "DEFECT-UDI-CHECKSUM",
+      "rule_id": "RULE-UDI-SYNTAX",
+      "description": "GS1 UDI-DI check digit invalid: 00850012345679 instead of calculated mod-10 check digit 8",
+      "expected_severity": "CRITICAL_RULE_FAILURE",
+      "expected_outcome": "FAIL"
+    },
+    {
+      "defect_id": "DEFECT-STERILE-SYMBOL",
+      "rule_id": "RULE-STERILE-BARRIER",
+      "description": "Missing required ISO 15223-1 sterile barrier symbol (STERILE EO) on primary sterile packaging",
+      "expected_severity": "CRITICAL_RULE_FAILURE",
+      "expected_outcome": "FAIL"
+    },
+    {
+      "defect_id": "DEFECT-PROPAGATION-MISMATCH",
+      "rule_id": "RULE-ECO-PROPAGATION",
+      "description": "Draft label retained legacy 24-Month shelf life text instead of approved ECO 36-Month value",
+      "expected_severity": "CRITICAL_RULE_FAILURE",
+      "expected_outcome": "FAIL"
+    }
+  ],
+  "seeded_benign_changes": [
+    {
+      "change_id": "BENIGN-LOGO-SHIFT",
+      "description": "Benign 5px horizontal shift in company logo position",
+      "expected_severity": "REVIEW_REQUIRED",
+      "expected_critical": false
+    },
+    {
+      "change_id": "BENIGN-PADDING-SHIFT",
+      "description": "Benign font kerning/margin adjustment on non-critical metadata footer",
+      "expected_severity": "REVIEW_REQUIRED",
+      "expected_critical": false
+    }
+  ],
+  "acceptance_targets": {
+    "seeded_critical_defect_recall": 1.0,
+    "orphan_candidate_recall": 1.0,
+    "variant_discovery_recall": 1.0,
+    "extraction_exact_match_rate": 1.0,
+    "false_critical_rate": 0.0,
+    "audit_completeness": 1.0
+  }
+}

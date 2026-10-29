@@ -1,0 +1,45 @@
+{
+  "report_id": "ORPHAN-SCAN-EVIDENCE-001",
+  "generated_at": "2026-10-29T15:23:44Z",
+  "eco_id": "ECO-DEMO-001",
+  "target_product_family": "PF-CG-01",
+  "portfolio_total_variants": 8,
+  "forward_graph_traversal": {
+    "reachable_variant_count": 4,
+    "reachable_variants": [
+      "LV-EU-CART-001",
+      "LV-EU-STER-001",
+      "LV-US-CART-001",
+      "LV-US-STER-001"
+    ],
+    "omitted_target_variant": "LV-ORPHAN-001",
+    "observation": "Forward traversal through NetworkX digital thread missed LV-ORPHAN-001 because its packaging relationship edge was severed."
+  },
+  "inverse_catalog_scan": {
+    "surfaced_candidate_count": 1,
+    "candidates": [
+      {
+        "variant_id": "LV-ORPHAN-001",
+        "name": "CardioGraft US Procedural Kit Outer Carton Label",
+        "reason": "candidate_match_but_no_graph_path",
+        "supporting_evidence": {
+          "matched_product_family": "PF-CG-01",
+          "packaging_level": "SECONDARY",
+          "is_sterile": true,
+          "current_shelf_life": "24 Months",
+          "catalog_severed_note": "Legacy ERP migration omitted graph pointer edge from SKU-CG-US-02 to LV-ORPHAN-001 in PLM release v4.2"
+        },
+        "initial_disposition": "UNRESOLVED",
+        "human_triage_resolution": "AFFECTED",
+        "reviewer_role": "Regulatory Affairs Specialist"
+      }
+    ]
+  },
+  "safe_scope_gate_evaluation": {
+    "gate_engaged_initially": true,
+    "release_blocked_initially": true,
+    "gate_cleared_after_disposition": true,
+    "total_affected_variants_in_final_scope": 5
+  },
+  "acceptance_result": "PASS"
+}

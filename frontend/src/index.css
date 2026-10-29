@@ -1,0 +1,148 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-midnight: #0B1220;
+  --color-navy: #111827;
+  --color-surface-secondary: #172033;
+  --color-surface-elevated: #1E293B;
+  --color-border-subtle: #334155;
+  --color-text-primary: #F8FAFC;
+  --color-text-secondary: #CBD5E1;
+  --color-text-muted: #94A3B8;
+  --color-teal-clinical: #0F766E;
+  --color-teal-bright: #14B8A6;
+  --color-blue-clinical: #2563EB;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: #0B1220;
+  color: #F8FAFC;
+  background-image: 
+    radial-gradient(ellipse 70% 35% at 50% -5%, rgba(15, 118, 110, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 25% at 90% 5%, rgba(37, 99, 235, 0.05) 0%, transparent 50%);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0B1220;
+}
+::-webkit-scrollbar-thumb {
+  background: #1E293B;
+  border-radius: 9999px;
+  border: 1px solid #334155;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #0F766E;
+}
+
+/* Enterprise Panels & Cards */
+.card-enterprise {
+  background-color: #172033;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.card-enterprise:hover {
+  border-color: rgba(20, 184, 166, 0.35);
+}
+
+.card-elevated {
+  background-color: #1E293B;
+  border: 1px solid #334155;
+  border-radius: 10px;
+}
+
+/* Primary Brand Gradient */
+.bg-brand-gradient {
+  background: linear-gradient(110deg, #0F766E 0%, #0D9488 50%, #2563EB 100%);
+}
+
+/* Hero Title Gradient */
+.text-hero-gradient {
+  background: linear-gradient(90deg, #FFFFFF 0%, #CBD5E1 65%, #5EEAD4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Semantic Regulatory Status Badges */
+.badge-status-success {
+  color: #34D399;
+  background-color: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  font-weight: 600;
+  font-size: 0.75rem;
+  padding: 3px 9px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.badge-status-warning {
+  color: #FBBF24;
+  background-color: rgba(245, 158, 11, 0.12);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  font-weight: 600;
+  font-size: 0.75rem;
+  padding: 3px 9px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.badge-status-danger {
+  color: #F87171;
+  background-color: rgba(244, 63, 94, 0.12);
+  border: 1px solid rgba(244, 63, 94, 0.25);
+  font-weight: 600;
+  font-size: 0.75rem;
+  padding: 3px 9px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.badge-status-info {
+  color: #38BDF8;
+  background-color: rgba(14, 165, 233, 0.12);
+  border: 1px solid rgba(14, 165, 233, 0.25);
+  font-weight: 600;
+  font-size: 0.75rem;
+  padding: 3px 9px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Restrained Radar Beam Animation for Inverse Scan */
+@keyframes beam-flow {
+  0% { stroke-dashoffset: 24; }
+  100% { stroke-dashoffset: 0; }
+}
+
+.radar-beam-restrained {
+  stroke-dasharray: 6, 6;
+  animation: beam-flow 2s linear infinite;
+}
+
+/* Reduced Motion Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .radar-beam-restrained,
+  .animate-pulse,
+  .animate-spin {
+    animation: none !important;
+  }
+}

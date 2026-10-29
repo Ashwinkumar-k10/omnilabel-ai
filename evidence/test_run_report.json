@@ -1,0 +1,23 @@
+{
+  "report_title": "OmniLabel AI - Ground Truth Validation Run Report",
+  "timestamp": "2026-10-29T15:40:47.503837+00:00",
+  "version": "1.0.0",
+  "metrics": {
+    "seeded_critical_defect_recall": 1.0,
+    "orphan_candidate_recall": 1.0,
+    "variant_discovery_recall": 0.8,
+    "extraction_exact_match_rate": 1.0,
+    "false_critical_rate": 0.0,
+    "audit_completeness": 1.0,
+    "denominators": {
+      "extraction_fields": "5/5",
+      "orphan_candidates": "1/1",
+      "variant_discovery": "4/5",
+      "critical_defects": "4/4",
+      "false_critical": "0/2",
+      "audit_events": "11/11"
+    },
+    "software_version": "1.0.0",
+    "evaluation_timestamp": "2026-10-29T15:40:47.503837+00:00"
+  }
+}

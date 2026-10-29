@@ -1,0 +1,13 @@
+================================================================================
+ENGINEERING CHANGE ORDER: ECO-INVALID-001
+================================================================================
+ECO Number: ECO-INVALID-001
+Title: Unapproved Contradictory Label Change
+Change Type: Incomplete Specification
+Effective Date: Invalid-Date-Format
+Target Markets: Unknown
+
+1. CHANGE DESCRIPTION:
+Shelf life changed without specified previous value or numeric timeframe.
+Missing Product Family and contradictory storage claims.
+================================================================================
