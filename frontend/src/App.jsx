@@ -30,7 +30,7 @@ const DEFECT_OPTIONS = [
 ];
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState(1); // Default to Stage 2 (Core Differentiator)
+  const [activeTab, setActiveTab] = useState(0); // Default to Stage 1: ECO Intake & Provenance
   const [activeDefect, setActiveDefect] = useState('NONE');
   const [status, setStatus] = useState(null);
   const [eco, setEco] = useState(null);

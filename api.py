@@ -108,6 +108,18 @@ def get_health():
     }
 
 
+@app.post("/api/reset")
+def reset_system_state():
+    """Resets inventory and triage state to clean demo baseline."""
+    global impact_inventory, digital_thread, forward_reachable, traversal_paths
+    digital_thread = LabelDigitalThread(catalog_path)
+    digital_thread.connect_eco(extracted_eco.eco_id, extracted_eco.product_family_id)
+    forward_reachable, traversal_paths = digital_thread.forward_traverse(extracted_eco.eco_id)
+    impact_inventory = scanner.build_impact_inventory(extracted_eco, forward_reachable)
+    return {"status": "RESET_COMPLETE", "scope_complete": impact_inventory.scope_complete}
+
+
+
 @app.get("/api/status")
 def get_system_status(defect_type: Optional[str] = None):
     """Calculates active system gate states."""
