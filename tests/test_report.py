@@ -62,3 +62,8 @@ def test_export_evidence_artifacts(ground_truth_path, tmp_path):
     assert (out_dir / "02_test_manifest.json").exists()
     assert (out_dir / "03_test_results.json").exists()
     assert (out_dir / "test_run_report.json").exists()
+
+    md = generator.generate_compliance_summary_markdown(metrics)
+    assert "# OmniLabel AI — Verification Report" in md
+    assert "Orphan-Candidate Recall" in md
+

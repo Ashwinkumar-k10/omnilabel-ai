@@ -110,3 +110,17 @@ class EvidenceReportGenerator:
             "test_results": str(results_file),
             "run_report": str(summary_file)
         }
+
+    def generate_compliance_summary_markdown(self, metrics: EvaluationMetrics) -> str:
+        """Generates a formatted markdown compliance summary for regulatory filings."""
+        return (
+            f"# OmniLabel AI — Verification Report\n\n"
+            f"- **Evaluated:** {metrics.evaluation_timestamp}\n"
+            f"- **Software Version:** {metrics.software_version}\n"
+            f"- **Orphan-Candidate Recall:** {metrics.orphan_candidate_recall * 100:.1f}%\n"
+            f"- **Variant Discovery Recall:** {metrics.variant_discovery_recall * 100:.1f}%\n"
+            f"- **Critical Defect Recall:** {metrics.seeded_critical_defect_recall * 100:.1f}%\n"
+            f"- **False-Critical Rate:** {metrics.false_critical_rate * 100:.1f}%\n"
+            f"- **Cryptographic Audit Completeness:** {metrics.audit_completeness * 100:.1f}%\n"
+        )
+
