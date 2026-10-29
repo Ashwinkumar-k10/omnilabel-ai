@@ -1,7 +1,8 @@
 # OmniLabel AI
 ### Enterprise Medical Device Label Change Intelligence Platform
 
-[![CI/CD Pipeline](https://img.shields.io/badge/CI%2FCD-GitHub%20Actions%20Passing-10b981?style=flat-square&logo=githubactions&logoColor=white)](https://github.com/Ashwinkumar-k10/omnilabel-ai/actions)
+[![CI/CD Pipeline](https://github.com/Ashwinkumar-k10/omnilabel-ai/actions/workflows/ci.yml/badge.svg)](https://github.com/Ashwinkumar-k10/omnilabel-ai/actions)
+[![Release](https://img.shields.io/badge/Release-v1.0.0-blue?style=flat-square&logo=github)](https://github.com/Ashwinkumar-k10/omnilabel-ai/releases)
 [![Automated Tests](https://img.shields.io/badge/Pytest-43%20Passed%20%7C%200%20Failed-10b981?style=flat-square&logo=pytest&logoColor=white)](https://github.com/Ashwinkumar-k10/omnilabel-ai/actions)
 [![Audit Integrity](https://img.shields.io/badge/Audit%20Ledger-SHA--256%20Hash%20Chained-0f766e?style=flat-square)](https://github.com/Ashwinkumar-k10/omnilabel-ai)
 [![Frontend](https://img.shields.io/badge/Frontend-React%2018%20%7C%20Tailwind%20CSS-2563eb?style=flat-square&logo=react&logoColor=white)](https://github.com/Ashwinkumar-k10/omnilabel-ai)
