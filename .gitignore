@@ -50,5 +50,5 @@ frontend/node_modules/
 frontend/.vite/
 
 # Demo Video Recordings
-demo_video/*.webm
+demo_video/
 
