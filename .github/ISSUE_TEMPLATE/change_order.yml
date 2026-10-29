@@ -1,0 +1,32 @@
+name: Regulatory Change Order Intake
+description: Initiate a medical device labeling change evaluation
+title: "[ECO]: "
+labels: ["regulatory-change", "triage-required"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this issue template to document a proposed medical device labeling change request for OmniLabel AI evaluation.
+  - type: input
+    id: eco_id
+    attributes:
+      label: ECO Identifier
+      placeholder: "e.g., ECO-2024-0891"
+    validations:
+      required: true
+  - type: textarea
+    id: change_summary
+    attributes:
+      label: Change Description
+      placeholder: "Describe the attribute change (e.g., Sterile shelf life extension from 24 to 36 months)..."
+    validations:
+      required: true
+  - type: checkboxes
+    id: affected_tiers
+    attributes:
+      label: Anticipated Affected Packaging Levels
+      options:
+        - label: Primary Sterile Barrier (Pouch / Blister)
+        - label: Secondary Packaging (Unit Carton)
+        - label: Tertiary Packaging (Shipper / Case)
+        - label: Instructions for Use (IFU)
