@@ -34,7 +34,9 @@ class ControlledTemplateEngine:
 
     def __init__(self, templates_dir: Optional[str] = None):
         if not templates_dir:
-            templates_dir = str(Path(__file__).parent.parent / "templates")
+            cand_data = Path(__file__).parent.parent / "data" / "templates"
+            cand_root = Path(__file__).parent.parent / "templates"
+            templates_dir = str(cand_data if cand_data.exists() else cand_root)
         self.templates_dir = Path(templates_dir)
         self.env = Environment(
             loader=FileSystemLoader(str(self.templates_dir)),

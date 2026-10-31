@@ -44,7 +44,7 @@ app.add_middleware(
 # Directory Anchors
 REPO_ROOT = Path(__file__).parent
 DATA_DIR = REPO_ROOT / "data"
-TEMPLATES_DIR = REPO_ROOT / "templates"
+TEMPLATES_DIR = (DATA_DIR / "templates") if (DATA_DIR / "templates").exists() else (REPO_ROOT / "templates")
 EVIDENCE_DIR = REPO_ROOT / "evidence"
 
 # Singletons

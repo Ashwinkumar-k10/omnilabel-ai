@@ -55,7 +55,10 @@ def catalog_scanner(catalog_path) -> InverseCatalogScanner:
 
 @pytest.fixture
 def template_engine(repo_root) -> ControlledTemplateEngine:
-    return ControlledTemplateEngine(templates_dir=str(repo_root / "templates"))
+    cand_data = repo_root / "data" / "templates"
+    cand_root = repo_root / "templates"
+    templates_dir = str(cand_data if cand_data.exists() else cand_root)
+    return ControlledTemplateEngine(templates_dir=templates_dir)
 
 
 @pytest.fixture
