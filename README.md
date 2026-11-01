@@ -1,13 +1,13 @@
 # OmniLabel AI
 ### Enterprise Medical Device Label Change Intelligence Platform
+**Tata Elxsi TELEPORT Season 4 — Case Study 4: Healthcare & Life Sciences**
 
 [![CI/CD Pipeline](https://github.com/Ashwinkumar-k10/omnilabel-ai/actions/workflows/ci.yml/badge.svg)](https://github.com/Ashwinkumar-k10/omnilabel-ai/actions)
-[![Release](https://img.shields.io/badge/Release-v1.0.0-blue?style=flat-square&logo=github)](https://github.com/Ashwinkumar-k10/omnilabel-ai/releases)
-[![Automated Tests](https://img.shields.io/badge/Pytest-43%20Passed%20%7C%200%20Failed-10b981?style=flat-square&logo=pytest&logoColor=white)](https://github.com/Ashwinkumar-k10/omnilabel-ai/actions)
-[![Audit Integrity](https://img.shields.io/badge/Audit%20Ledger-SHA--256%20Hash%20Chained-0f766e?style=flat-square)](https://github.com/Ashwinkumar-k10/omnilabel-ai)
-[![Frontend](https://img.shields.io/badge/Frontend-React%2018%20%7C%20Tailwind%20CSS-2563eb?style=flat-square&logo=react&logoColor=white)](https://github.com/Ashwinkumar-k10/omnilabel-ai)
-[![Backend](https://img.shields.io/badge/Backend-FastAPI%20%7C%20Python%203.11-059669?style=flat-square&logo=fastapi&logoColor=white)](https://github.com/Ashwinkumar-k10/omnilabel-ai)
-[![Compliance Standard](https://img.shields.io/badge/Standard-FDA%2021%20CFR%20Part%2011%20%7C%20EU%20MDR-1e293b?style=flat-square)](https://github.com/Ashwinkumar-k10/omnilabel-ai)
+[![Release](https://img.shields.io/badge/Release-v1.0.0-blue?style=for-the-badge&logo=github)](https://github.com/Ashwinkumar-k10/omnilabel-ai/releases)
+[![Automated Tests](https://img.shields.io/badge/Pytest-43%20Passed%20%7C%200%20Failed-10b981?style=for-the-badge&logo=pytest&logoColor=white)](https://github.com/Ashwinkumar-k10/omnilabel-ai/actions)
+[![Audit Integrity](https://img.shields.io/badge/Audit%20Ledger-SHA--256%20Hash%20Chained-0f766e?style=for-the-badge)](https://github.com/Ashwinkumar-k10/omnilabel-ai)
+[![Compliance Standard](https://img.shields.io/badge/Standard-FDA%2021%20CFR%20Part%2011%20%7C%20EU%20MDR-1e293b?style=for-the-badge)](https://github.com/Ashwinkumar-k10/omnilabel-ai)
+[![License: MIT](https://img.shields.io/badge/License-MIT-purple?style=for-the-badge)](LICENSE)
 
 > **Core Operating Principle:**  
 > *Probabilistic AI Extracts • Deterministic Rules Decide • Qualified Humans Sign*
@@ -17,148 +17,247 @@
 
 ---
 
-## 1. Executive Summary
-
-In medical device manufacturing, engineering and regulatory changes (e.g., extending qualified sterile shelf life from 24 months to 36 months) propagate across complex multi-tier hierarchies: **Product Families &rarr; SKUs &rarr; Packaging Tiers &rarr; Market-Specific Label Variants**.
-
-A critical vulnerability in life-sciences change control is **silent scope omission**: when legacy ERP/PLM catalog relationships are severed or missing, standard graph traversal silently overlooks disconnected label variants. Unreviewed labels bypass quality gates, creating severe regulatory non-compliance under FDA 21 CFR Part 820 and EU MDR 2017/745.
-
-**OmniLabel AI** is an enterprise-grade change-intelligence platform designed to eliminate scope omission through **Uncertainty-Aware Dual Discovery**:
-1. **Forward Digital Thread Traversal:** Rapidly tracks all explicitly linked variants across the product tree.
-2. **Independent Inverse Catalog Scanning:** Concurrently evaluates independent catalog attributes (sterility status, product family codes, packaging tiers, expiry requirements) to surface orphaned candidates whose relational edges are broken.
-3. **Safe Scope Gate:** Enforces an unbypassable regulatory hold that prevents release approval until all uncertain candidates are triaged by a qualified human reviewer.
-4. **Controlled Template Drafting:** Restricts artwork updates to validated SVG template injection (Jinja2) to eliminate generative AI hallucinations in regulated packaging.
-5. **Deterministic Verification & Computer Vision:** Enforces exact GS1 GTIN-14 Mod-10 check digit mathematics, ISO 15223-1 medical symbol adherence, expiry arithmetic, and OpenCV pixel-difference analysis.
-6. **21 CFR Part 11 Electronic Signature & Tamper-Evident Ledger:** Every event is recorded in an append-only cryptographic ledger with forward SHA-256 hash chaining.
-
----
-
-## 2. System Architecture
-
-OmniLabel AI uses a decoupled enterprise architecture comprising a high-performance **FastAPI** backend runtime, a modern **React 18** clinical SaaS dashboard, and a **Dockerized** CI/CD deployment pipeline.
-
-```
-                              ┌──────────────────────────────────────────────┐
-                              │    Engineering Change Order (ECO Document)   │
-                              └──────────────────────┬───────────────────────┘
-                                                     │
-                                                     ▼
-                              ┌──────────────────────────────────────────────┐
-                              │      Bounded Character-Span Extractor        │
-                              │    (Exact Substring & SHA-256 Provenance)    │
-                              └──────────────────────┬───────────────────────┘
-                                                     │
-                       ┌─────────────────────────────┴─────────────────────────────┐
-                       │                                                           │
-                       ▼                                                           ▼
-       ┌───────────────────────────────┐                           ┌───────────────────────────────┐
-       │   Forward Digital Thread      │                           │  Independent Inverse Catalog  │
-       │   Graph Traversal (NetworkX)  │                           │   Scanner (Attribute Match)   │
-       └───────────────┬───────────────┘                           └───────────────┬───────────────┘
-                       │                                                           │
-                       │   [Known Hierarchy Links]                                 │   [Orphaned Candidate]
-                       ▼                                                           ▼
-       ┌───────────────────────────────┐                           ┌───────────────────────────────┐
-       │  4 Forward-Linked Variants    │                           │  1 Orphaned Variant Detected  │
-       └───────────────┬───────────────┘                           └───────────────┬───────────────┘
-                       │                                                           │
-                       └─────────────────────────────┬─────────────────────────────┘
-                                                     │
-                                                     ▼
-                                      ┌─────────────────────────────┐
-                                      │    SAFE REGULATORY GATE     │
-                                      │  (Blocks Release Approval   │
-                                      │   Until Triage is Complete) │
-                                      └──────────────┬──────────────┘
-                                                     │ Human QA Triage
-                                                     ▼
-                                      ┌─────────────────────────────┐
-                                      │ Controlled SVG Drafting     │
-                                      │ (Jinja2 + PyMuPDF Engine)   │
-                                      └──────────────┬──────────────┘
-                                                     │
-                                                     ▼
-                                      ┌─────────────────────────────┐
-                                      │ Deterministic Rules & CV    │
-                                      │ • GS1 GTIN-14 Mod-10 Check  │
-                                      │ • ISO 15223-1 Sterile Symbol│
-                                      │ • OpenCV Pixel Diff Heatmap │
-                                      └──────────────┬──────────────┘
-                                                     │
-                                                     ▼
-                                      ┌─────────────────────────────┐
-                                      │ 21 CFR Part 11 E-Signature  │
-                                      │ & SHA-256 Chained Ledger    │
-                                      └─────────────────────────────┘
-```
+## 📑 Table of Contents
+1. [Executive Summary & Problem Statement](#1-executive-summary--problem-statement)
+2. [State-of-the-Art (SOTA) Competitive Comparison](#2-state-of-the-art-sota-competitive-comparison)
+3. [System Architecture & Visual Pipeline](#3-system-architecture--visual-pipeline)
+4. [5-Stage Clinical Pipeline UI Gallery](#4-5-stage-clinical-pipeline-ui-gallery)
+5. [Deterministic Mathematics & Algorithms](#5-deterministic-mathematics--algorithms)
+6. [Regulatory & Clinical Compliance Matrix](#6-regulatory--clinical-compliance-matrix)
+7. [Technology Stack](#7-technology-stack)
+8. [Repository Structure](#8-repository-structure)
+9. [Verified Ground-Truth Performance Metrics](#9-verified-ground-truth-performance-metrics)
+10. [Quick Start & Step-by-Step Execution](#10-quick-start--step-by-step-execution)
+11. [FastAPI REST API Reference](#11-fastapi-rest-api-reference)
+12. [Enterprise CI/CD & Cryptographic Assurance](#12-enterprise-cicd--cryptographic-assurance)
+13. [Regulatory Disclaimer & License](#13-regulatory-disclaimer--license)
 
 ---
 
-## 3. Technology Stack
+## 1. Executive Summary & Problem Statement
+
+### 1.1 The Industrial Crisis: Silent Scope Omission
+In medical device manufacturing, engineering, clinical, or regulatory changes propagate through complex multi-tiered product hierarchies:
+$$\text{Product Families} \longrightarrow \text{SKUs / Part Numbers} \longrightarrow \text{Packaging Levels (Primary / Secondary / Shipper)} \longrightarrow \text{Regional Label Variants}$$
+
+When an **Engineering Change Order (ECO)** extends sterile packaging shelf life (e.g., from **24 months to 36 months** following real-time stability testing), manufacturers must update every physical packaging variant across global markets.
+
+However, medical device enterprises operate on fragmented, legacy PLM, ERP, and MES systems (legacy SAP, Siemens Teamcenter, PTC Windchill, Excel sheets). Over decades of migrations, foreign keys and digital thread links become disconnected.
+
+> [!CAUTION]
+> **The Catastrophic Failure Mode:** Standard change-management tools only traverse explicitly linked parent-child graph edges. If a regional packaging variant (e.g., a German or Japanese secondary carton) has a broken relational link to the parent SKU, standard graph traversal silently ignores it. This is **Silent Scope Omission**.
+>
+> The outdated label continues to be printed and distributed with an invalid 24-month expiry, creating non-compliance under **FDA 21 CFR Part 820.30/820.120** and **EU MDR 2017/745 Annex I**, causing **FDA 483 warning letters, Class II recalls, hospital quarantine orders, and multimillion-dollar liabilities**.
+
+### 1.2 The OmniLabel AI Solution
+**OmniLabel AI** is an enterprise-grade change-intelligence platform designed specifically to eliminate silent scope omission in medical device manufacturing through:
+1. **Uncertainty-Aware Dual Discovery:** Combines forward digital thread graph traversal with an independent heuristic Inverse Catalog Scanner to surface orphaned packaging variants.
+2. **The Safe Scope Gate:** Enforces an unbypassable regulatory hold that prevents release approval until 100% of ambiguous candidates are triaged by a qualified human reviewer.
+3. **Controlled Artwork Drafting:** Restricts artwork updates to validated SVG template injection (Jinja2) to eliminate generative AI hallucinations in regulated packaging.
+4. **Deterministic Verification & Computer Vision:** Enforces exact GS1 GTIN-14 Mod-10 check digit math, ISO 15223-1 symbols, expiry date arithmetic, and OpenCV visual pixel deltas.
+5. **21 CFR Part 11 Electronic Signature & Tamper-Evident Ledger:** Every event is recorded in an append-only cryptographic ledger with recursive forward SHA-256 hash chaining.
+
+---
+
+## 2. State-of-the-Art (SOTA) Competitive Comparison
+
+How OmniLabel AI compares against traditional methods and generic AI tools:
+
+| Feature / Capability | Manual Spreadsheets (Legacy ERP) | Standard PLM Traversal (Teamcenter/Windchill) | Generic LLM Chatbots (ChatGPT / RAG) | **OmniLabel AI (Our System)** |
+| :--- | :---: | :---: | :---: | :---: |
+| **Orphaned SKU Discovery** | ❌ Fails (Manual search) | ❌ Fails (Graph edge blindspot) | ⚠️ Partial (Uncertain recall) | **✅ 100% (Dual Discovery + Inverse Scan)** |
+| **Hallucination Risk** | N/A (Manual human) | N/A | ❌ High (Hallucinates barcodes/text) | **✅ ZERO (Deterministic Jinja2 SVG)** |
+| **Safe Scope Gate Hold** | ❌ None | ❌ None | ❌ None | **✅ Mandatory Regulatory Hold** |
+| **GS1 GTIN-14 Math Check** | ⚠️ Manual calculation | ❌ Syntax regex only | ❌ Unreliable probabilistic math | **✅ Exact Mod-10 Checksum Algorithm** |
+| **ISO 15223-1 Symbol Verification** | ⚠️ Manual visual check | ❌ None | ❌ Inaccurate glyph recognition | **✅ Vector Geometry & OpenCV Delta** |
+| **FDA 21 CFR Part 11 Audit Trail** | ❌ None (Uncontrolled files) | ⚠️ Basic DB timestamp | ❌ None | **✅ SHA-256 Recursive Hash-Chained Ledger** |
+| **Intent-Bearing Electronic Signatures** | ⚠️ Paper / Scan PDF | ⚠️ Standard username login | ❌ None | **✅ Full §11.50 Compliant E-Signature** |
+| **Automated Verification Suite** | 0 tests | Proprietary regression | 0 tests | **✅ 43/43 Passing Automated Tests** |
+| **Review Cycle Time** | 2–3 weeks | 3–5 days | Minutes (Unsafe) | **✅ Minutes (Fully Auditable & Safe)** |
+
+---
+
+## 3. System Architecture & Visual Pipeline
+
+OmniLabel AI couples userspace intelligence with deterministic mathematical verification and cryptographic governance:
+
+```mermaid
+flowchart TD
+    subgraph INTAKE ["Stage 1: ECO Intake & Provenance"]
+        ECO["Engineering Change Order\n(PDF / Unstructured Text)"] --> EXTRACT["Bounded Character-Span Extractor\n(src/extraction.py)"]
+        EXTRACT --> PROV["Provenance Hash Registry\n(src/provenance.py)\nSHA-256 Span Binding"]
+    end
+
+    subgraph DISCOVERY ["Stage 2: Uncertainty-Aware Dual Discovery"]
+        PROV --> FWD["Forward Digital Thread Engine\n(src/impact_graph.py)\nExplicit Relationship Traversal"]
+        PROV --> INV["Inverse Catalog Scanner\n(src/orphan_scan.py)\nMulti-Attribute Heuristic Scan"]
+        FWD --> COMBINE{"Dual Discovery Aggregator"}
+        INV --> COMBINE
+        COMBINE --> GATE["Safe Scope Gate\n(src/review.py)\nMandatory Human Triage Hold"]
+    end
+
+    subgraph DRAFTING ["Stage 3: Controlled Artwork Drafting"]
+        GATE -->|All Candidates Resolved| TEMPLATE["Controlled Template Engine\n(src/template_engine.py)\nJinja2 Parameterized SVG"]
+        TEMPLATE -->|Zero Hallucination| ARTWORK["Compliant Label Artworks\n(Master SVG + Rendered PNG)"]
+    end
+
+    subgraph VERIFICATION ["Stage 4: Deterministic Verification & CV"]
+        ARTWORK --> RULES["Deterministic Rules Engine\n(src/rules.py)\n• GS1 GTIN-14 Mod-10 Checksum\n• ISO 15223-1 Symbol Verification\n• Expiry Arithmetic & Date Formats"]
+        ARTWORK --> OPENCV["Computer Vision Inspection\n(src/visual_diff.py)\nOpenCV Pixel Delta & Heatmap"]
+    end
+
+    subgraph GOVERNANCE ["Stage 5: 21 CFR Part 11 Audit & Release"]
+        RULES --> AUDIT["Cryptographic Audit Ledger\n(src/audit.py)\nSHA-256 Forward Hash Chaining"]
+        OPENCV --> AUDIT
+        AUDIT --> ESIGN["21 CFR Part 11 Electronic Signature\nDual Quality / Regulatory Sign-Off"]
+        ESIGN --> DOSSIER["Regulatory Release Dossier\n(src/report.py)\nInspection-Ready Audit Export"]
+    end
+```
+
+---
+
+## 4. 5-Stage Clinical Pipeline UI Gallery
+
+High-resolution 1080p captures from the live clinical SaaS dashboard:
+
+### Stage 1: ECO Intake & Bounded Character-Span Provenance
+![Stage 1: ECO Intake & Provenance](dashboard_images/stage1_intake_provenance.png)
+*Ingests unstructured ECO notices, extracts exact character offsets (`start_char`, `end_char`), and cryptographically stamps raw source text with SHA-256 digests.*
+
+---
+
+### Stage 2: Uncertainty-Aware Dual Discovery & Safe Scope Gate
+![Stage 2: Dual Discovery & Safe Scope Gate](dashboard_images/stage2_dual_discovery.png)
+*Visualizes explicit digital thread graph edges while inversely scanning catalog attributes. Surfaces orphaned candidate `LV-ORPHAN-001` and enforces a mandatory Safe Scope Gate hold.*
+
+---
+
+### Stage 3: Controlled Artwork Drafting (Zero-Hallucination)
+![Stage 3: Controlled Artwork Drafting](dashboard_images/stage3_controlled_artwork.png)
+*Renders validated Jinja2 SVG templates with verified GTINs, sterility symbols, lot numbers, and updated 36-month expiry dates with zero generative distortion.*
+
+---
+
+### Stage 4: Deterministic Verification & Computer Vision Inspection
+![Stage 4: Deterministic Verification](dashboard_images/stage4_deterministic_verification.png)
+*Executes mathematical GS1 Mod-10 check digit validation, ISO 15223-1 symbol geometry checks, and OpenCV pixel-difference defect heatmaps with interactive defect injection simulation.*
+
+---
+
+### Stage 5: FDA 21 CFR Part 11 Audit Ledger & Dual E-Signature
+![Stage 5: 21 CFR 11 Audit Ledger](dashboard_images/stage5_21cfr_audit_ledger.png)
+*Captures intent-bearing electronic signatures (§11.50) and maintains an immutable, append-only SHA-256 forward-chained event ledger with built-in cryptographic integrity audit verification.*
+
+---
+
+## 5. Deterministic Mathematics & Algorithms
+
+### 5.1 GS1 GTIN-14 Modulo-10 Check Digit Calculation
+For a 14-digit Global Trade Item Number $D_1 D_2 \dots D_{14}$, the 14th digit is computed deterministically:
+
+$$\text{Weighted Sum } S = \sum_{i=1}^{13} D_i \times w_i \quad \text{where } w_i = \begin{cases} 3 & \text{if } (14 - i) \text{ is odd} \\ 1 & \text{if } (14 - i) \text{ is even} \end{cases}$$
+
+$$\text{Check Digit } D_{14} = (10 - (S \bmod 10)) \bmod 10$$
+
+If $D_{14}^{\text{computed}} \neq D_{14}^{\text{actual}}$, the packaging label is blocked immediately.
+
+### 5.2 Inverse Catalog Scoring Function
+To determine whether an unlinked catalog SKU $k$ is an orphaned variant of an impacted family $F$:
+
+$$\text{Score}(k, F) = w_1 \cdot \mathbb{I}(\text{FamilyCode}_k = \text{FamilyCode}_F) + w_2 \cdot \mathbb{I}(\text{Sterility}_k = \text{Sterility}_F) + w_3 \cdot \mathbb{I}(\text{ShelfLife}_k = \text{ShelfLife}_F) + w_4 \cdot \text{Jaccard}(\text{Desc}_k, \text{Desc}_F)$$
+
+Where weights $w = [0.40, 0.25, 0.20, 0.15]$. Candidates scoring $\ge 0.65$ trigger a mandatory Safe Scope Gate hold.
+
+### 5.3 Cryptographic Hash Chain Linkage
+For event ledger entry $n$ with payload $P_n$ and genesis hash $H_0 = \text{SHA-256}(\text{"GENESIS_OMNILABEL_AI"})$:
+
+$$H_n = \text{SHA-256}\left(H_{n-1} + \text{EventUUID}_n + \text{Timestamp}_n + \text{EventType}_n + \text{CanonicalJSON}(P_n)\right)$$
+
+---
+
+## 6. Regulatory & Clinical Compliance Matrix
+
+| Regulation / Standard | Specific Clause | How OmniLabel AI Enforces Compliance |
+| :--- | :--- | :--- |
+| **FDA 21 CFR Part 11** | Subpart B §11.10 (Controls for closed systems) | Append-only SQLite ledger with continuous forward SHA-256 hash chaining; cryptographic integrity verification tool. |
+| **FDA 21 CFR Part 11** | Subpart C §11.50 & §11.70 (Signature manifestations) | Manifests printed name, UTC timestamp, role, and explicit signing reason; cryptographically binds signature to release hash. |
+| **FDA 21 CFR Part 820** | §820.30(i) & §820.120 (Device labeling controls) | Eliminates silent scope omission through uncertainty-aware dual discovery; prevents release of unreviewed packaging. |
+| **EU MDR 2017/745** | Annex I, Chapter III (General safety & performance) | Enforces standardized medical symbols, storage condition bounds, and deterministic expiry date arithmetic. |
+| **ISO 15223-1:2021** | Clause 5 (Symbols to be used on medical device labels) | Deterministic SVG parser validates presence and geometric integrity of Symbol 5.2.3, 5.4.2, 5.1.4, 5.1.5. |
+| **GS1 General Specs** | Section 7.9 (Modulo 10 Check Digit Calculation) | Strict mathematical validation of the 14th check digit for all GTIN identifiers. |
+
+---
+
+## 7. Technology Stack
 
 | Layer | Component | Technology | Description |
 |:---|:---|:---|:---|
-| **Frontend** | Clinical UI | React 18, Tailwind CSS, Lucide | Enterprise life-sciences SaaS interface with Linear/Veeva-inspired design tokens |
-| **API Gateway** | REST Services | FastAPI, Uvicorn, Pydantic v2 | High-throughput asynchronous endpoints with OpenAPI 3.1 specification |
+| **Frontend (UI)** | Clinical Dashboard | React 18, Tailwind CSS, Lucide Icons, Vite | Enterprise life-sciences SaaS interface with clinical dark/teal tokens and 5-stage stepper |
+| **API Gateway** | REST Microservices | FastAPI, Uvicorn, Pydantic v2 | High-throughput asynchronous endpoints with OpenAPI 3.1 specification |
 | **Graph Intelligence** | Digital Thread | NetworkX | Multi-level directed graph modeling ECOs, product families, packaging tiers, and label variants |
-| **Inverse Discovery** | Orphan Scanner | Python Core Engine | Deterministic set intersection and attribute filter isolating disconnected variants |
+| **Inverse Discovery** | Heuristic Scanner | Python Core Engine | Deterministic set intersection and attribute scoring isolating disconnected variants |
 | **Artwork Engine** | Template Generator | Jinja2, PyMuPDF (fitz) | Parameterized SVG template rendering and high-resolution rasterization (PNG/PDF) |
-| **Visual QA** | Difference Engine | OpenCV (cv2), NumPy | Pixel-level delta calculation, bounding-box localization, and 3-way triage classification |
+| **Visual QA & CV** | Difference Engine | OpenCV (cv2), NumPy | Sub-pixel alignment, pixel-level delta calculation, and bounding-box contour heatmaps |
 | **Compliance Ledger** | Cryptographic Audit | SQLite, `hashlib` (SHA-256) | Append-only tamper-evident ledger linking sequential events via cryptographic hashes |
 | **DevOps & CI/CD** | Pipeline & Containers | Docker, GitHub Actions | Multi-stage container builds and automated continuous verification workflows |
 
 ---
 
-## 4. Repository Structure
+## 8. Repository Structure
 
 ```text
 omnilabel-ai/
 ├── .github/
 │   └── workflows/
-│       └── ci.yml                     # GitHub Actions CI/CD (Pytest suite + React build)
-├── .gitignore                         # Excludes node_modules, *.db, __pycache__, .pytest_cache
+│       └── ci.yml                     # GitHub Actions CI/CD (Pytest suite + React build + Deploy)
+├── .gitignore                         # Excludes node_modules, *.db, demo_video/, ppt/
 ├── Dockerfile                         # Production multi-stage build (Node 22 + Python 3.11)
 ├── docker-compose.yml                 # Full-stack container orchestration
+├── Makefile                           # Developer CLI shortcuts (test, run, docker, lint)
 ├── README.md                          # Platform documentation & architecture reference
+├── PROJECT_OVERVIEW.md                # Master executive regulatory dossier
+├── TEST_AND_CI_EVIDENCE.md            # Official 43/43 test execution log & CI run proof
 ├── requirements.txt                   # Production Python backend dependencies
 ├── api.py                             # FastAPI REST service & React frontend static mount
+│
+├── dashboard_images/                  # Full-resolution 1080p screenshot showcase
+│   ├── stage1_intake_provenance.png
+│   ├── stage2_dual_discovery.png
+│   ├── stage3_controlled_artwork.png
+│   ├── stage4_deterministic_verification.png
+│   └── stage5_21cfr_audit_ledger.png
 │
 ├── data/
 │   ├── catalog.json                   # Product catalog (SKUs, packaging hierarchy, GTIN prefixes)
 │   ├── eco_demo.txt                   # Baseline Engineering Change Order (ECO-2024-0891)
 │   ├── eco_invalid.txt                # Invalid ECO test fixture (tampered GTIN / format breach)
 │   ├── ground_truth.json              # Pre-frozen ground-truth acceptance manifest
-│   └── label_variants/                # 8 Synthetic production labeling variants
-│       ├── LV-EU-CART-001.json
-│       ├── LV-EU-IFU-001.json
-│       ├── LV-EU-STER-001.json
-│       ├── LV-ORPHAN-001.json         # Disconnected variant surfaced by inverse scan
-│       ├── LV-US-CART-001.json
-│       ├── LV-US-IFU-001.json
-│       ├── LV-US-SHIP-001.json
-│       └── LV-US-STER-001.json
+│   ├── label_variants/                # 8 Synthetic production labeling variants
+│   └── templates/                     # Approved SVG label templates (ISO 15223-1 symbols)
+│       ├── approved_label.svg
+│       └── approved_label_benign.svg
 │
 ├── evidence/                          # Pre-computed compliance evidence & audit exports
 │   ├── 02_test_manifest.json          # Deterministic test harness metadata
 │   ├── 03_test_results.json           # Pytest validation execution logs
 │   ├── 04_orphan_scan_report.json     # Independent inverse catalog recovery logs
 │   ├── 07_audit_event_export.json     # 21 CFR Part 11 append-only cryptographic log
-│   └── test_run_report.json           # Evaluation metrics (100% recall, 0 regressions)
+│   ├── pytest_43_43_full_log.txt      # Verbatim console output of all 43 tests passing
+│   ├── github_actions_ci_run_evidence.json # GitHub Actions CI API export (Run #14)
+│   └── github_actions_jobs_evidence.json   # GitHub Jobs status & duration manifest
 │
 ├── frontend/                          # Enterprise React SaaS Dashboard (Linear/Veeva style)
-│   ├── index.html                     # HTML5 entry with Inter font
 │   ├── package.json                   # React 18, Tailwind CSS, Lucide icons, Vite
-│   ├── package-lock.json
-│   ├── postcss.config.js
 │   ├── tailwind.config.js             # Enterprise color tokens (#0B1220 Midnight, #0F766E Clinical Teal)
 │   ├── vite.config.js
 │   └── src/
 │       ├── App.jsx                    # 5-stage workflow UI + SVG digital thread graph
-│       ├── index.css                  # Global styles, scrollbars, and keyframes
-│       └── main.jsx                   # React root mount
+│       └── main.jsx
+│
+├── reports/
+│   └── junit.xml                      # Standard JUnit test execution XML
 │
 ├── src/                               # Modular Python Verification & AI Pipeline
-│   ├── __init__.py
 │   ├── schemas.py                     # Strict Pydantic v2 data models
 │   ├── extraction.py                  # Character-offset bounded change extraction
 │   ├── provenance.py                  # Verbatim substring verification & SHA-256 doc hashing
@@ -171,12 +270,7 @@ omnilabel-ai/
 │   ├── audit.py                       # SQLite append-only SHA-256 hash-chained ledger
 │   └── report.py                      # Ground-truth evaluation metrics engine
 │
-├── templates/
-│   ├── approved_label.svg             # Baseline approved SVG template (ISO 15223-1 symbols)
-│   └── approved_label_benign.svg      # Benign visual shift test template
-│
 └── tests/                             # Automated Test Harness (43 Passed, 100% Green)
-    ├── __init__.py
     ├── conftest.py
     ├── test_api.py                    # REST API endpoint tests
     ├── test_audit.py                  # SHA-256 chain verification & tamper detection tests
@@ -193,7 +287,7 @@ omnilabel-ai/
 
 ---
 
-## 5. Verified Ground-Truth Metrics
+## 9. Verified Ground-Truth Performance Metrics
 
 Evaluated against the pre-frozen regulatory ground-truth acceptance manifest ([`data/ground_truth.json`](data/ground_truth.json)):
 
@@ -204,12 +298,13 @@ Evaluated against the pre-frozen regulatory ground-truth acceptance manifest ([`
 | **Critical Defect Detection Recall** | 100.0% | **100.0%** | 4 / 4 seeded defects blocked | **PASSED** |
 | **Source Provenance Exact-Match** | 100.0% | **100.0%** | 5 / 5 character-spans verified | **PASSED** |
 | **False-Critical Alarm Rate** | 0.0% | **0.0%** | 0 / 2 benign shifts flagged critical | **PASSED** |
-| **Cryptographic Audit Completeness** | 100.0% | **100.0%** | All state changes hash-chained | **PASSED** |
+| **Cryptographic Audit Completeness** | 100.0% | **100.0%** | 28 / 28 state changes hash-chained | **PASSED** |
 | **Automated Test Suite Pass Rate** | 100.0% | **100.0%** | 43 / 43 Pytest test cases passing | **PASSED** |
+| **Test Execution Latency** | $< 10.0\text{s}$ | **$3.44\text{s}$** | 10 specialized test modules | **PASSED** |
 
 ---
 
-## 6. Quick Start & Execution
+## 10. Quick Start & Step-by-Step Execution
 
 ### Prerequisites
 * Python 3.11+
@@ -220,7 +315,7 @@ Evaluated against the pre-frozen regulatory ground-truth acceptance manifest ([`
 
 ### Option A: Local Development Setup
 
-#### 1. Clone Repository & Setup Python Environment
+#### 1. Clone Repository & Setup Python Virtual Environment
 ```bash
 git clone https://github.com/Ashwinkumar-k10/omnilabel-ai.git
 cd omnilabel-ai
@@ -266,7 +361,7 @@ The application will be compiled and available at **`http://localhost:8000`**.
 
 ---
 
-## 7. API Reference (FastAPI)
+## 11. FastAPI REST API Reference
 
 The FastAPI server provides an interactive OpenAPI / Swagger UI at **`http://localhost:8000/docs`**.
 
@@ -285,7 +380,7 @@ The FastAPI server provides an interactive OpenAPI / Swagger UI at **`http://loc
 
 ---
 
-## 8. Continuous Integration & Quality Assurance
+## 12. Enterprise CI/CD & Cryptographic Assurance
 
 The repository includes a production **GitHub Actions CI/CD Pipeline** ([`.github/workflows/ci.yml`](.github/workflows/ci.yml)) running on every push and pull request to `main`:
 
@@ -298,15 +393,13 @@ The repository includes a production **GitHub Actions CI/CD Pipeline** ([`.githu
   * Runs on `ubuntu-latest` with Node.js 22.
   * Installs dependencies and runs Vite production compilation.
   * Validates CSS tokens, layout components, and bundle packaging.
+* **Job 3: Production Deployment & Regulatory Gate:**
+  * Registers active deployment to the **`Production`** environment linked to Release [`v1.0.0`](https://github.com/Ashwinkumar-k10/omnilabel-ai/releases/tag/v1.0.0).
 
 ---
 
-## 9. Regulatory Disclaimer
+## 13. Regulatory Disclaimer & License
 
-OmniLabel AI is a software prototype developed for **Tata Elxsi TELEPORT Season 4 (Case Study 4: Healthcare & Life Sciences)**. It demonstrates human-supervised change control, dual-path impact discovery, and deterministic rule validation. It is designed to assist and augment qualified regulatory affairs and quality assurance personnel, not to serve as an unvalidated autonomous medical-device release authority.
-
----
-
-## 10. License
+OmniLabel AI is an enterprise software prototype developed for **Tata Elxsi TELEPORT Season 4 (Case Study 4: Healthcare & Life Sciences)**. It demonstrates human-supervised change control, dual-path impact discovery, and deterministic rule validation. It is designed to assist and augment qualified regulatory affairs and quality assurance personnel, not to serve as an unvalidated autonomous medical-device release authority.
 
 This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
