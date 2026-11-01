@@ -220,16 +220,23 @@ Where the calibrated weights are:
 ---
 
 ### 5.3 Cryptographic Hash Chain Linkage
-To satisfy FDA 21 CFR Part 11 §11.10 requirements for closed-system data integrity, each ledger event $n$ is chained to the previous record hash $H_{n-1}$, initialized from a tamper-evident genesis anchor:
+To satisfy FDA 21 CFR Part 11 §11.10 requirements for closed-system data integrity, each ledger event $n$ is chained to the previous record hash $H_{n-1}$, initialized from an immutable genesis anchor:
 
-$$\text{Genesis Anchor: } \quad H_0 = \text{SHA-256}\Big(\texttt{"GENESIS\_OMNILABEL\_AI"}\Big)$$
+```python
+# Genesis Digest Anchor (src/audit.py)
+H_0 = SHA256("GENESIS_OMNILABEL_AI")
 
-$$\begin{aligned}
-H_n = \text{SHA-256}\Big( &H_{n-1} \;\mathbin{\Vert}\; \text{UUID}_n \;\mathbin{\Vert}\; \text{Timestamp}_n \\
-&\;\mathbin{\Vert}\; \text{EventType}_n \;\mathbin{\Vert}\; \text{CanonicalJSON}(P_n) \Big)
-\end{aligned}$$
+# Recursive Forward Chaining
+H_n = SHA256( f"{H_{n-1}}|{event_uuid}|{timestamp}|{event_type}|{canonical_json(payload)}" )
+```
 
-Where $\mathbin{\Vert}$ denotes strict byte-level string concatenation and $\text{CanonicalJSON}(P_n)$ enforces deterministic RFC 8785 key-sorted serializations.
+$$\text{Cryptographic Hash Formulation: } \quad H_n = \mathcal{H}\Big( H_{n-1} \,\|\, \text{UUID}_n \,\|\, T_n \,\|\, \text{Type}_n \,\|\, \mathcal{J}(P_n) \Big)$$
+
+Where:
+* $H_0$ is the initialized genesis anchor hash (`GENESIS_OMNILABEL_AI`)
+* $\mathcal{H}$ represents the SHA-256 cryptographic hash primitive
+* $\|$ denotes deterministic pipe-delimited string concatenation
+* $\mathcal{J}(P_n)$ enforces RFC 8785 canonical key-sorted JSON serialization of event payload $P_n$
 
 ---
 
