@@ -38,7 +38,12 @@
 
 ### 1.1 The Industrial Crisis: Silent Scope Omission
 In medical device manufacturing, engineering, clinical, or regulatory changes propagate through complex multi-tiered product hierarchies:
-$$\text{Product Families} \longrightarrow \text{SKUs / Part Numbers} \longrightarrow \text{Packaging Levels (Primary / Secondary / Shipper)} \longrightarrow \text{Regional Label Variants}$$
+
+```text
+┌──────────────────┐     ┌─────────────────────┐     ┌────────────────────────┐     ┌────────────────────────┐
+│ Product Families │ ──► │ SKUs / Part Numbers │ ──► │ Packaging Tiers (1/2/3)│ ──► │ Regional Label Variants│
+└──────────────────┘     └─────────────────────┘     └────────────────────────┘     └────────────────────────┘
+```
 
 When an **Engineering Change Order (ECO)** extends sterile packaging shelf life (e.g., from **24 months to 36 months** following real-time stability testing), manufacturers must update every physical packaging variant across global markets.
 
@@ -79,39 +84,61 @@ How OmniLabel AI compares against traditional methods and generic AI tools:
 
 ## 3. System Architecture & Visual Pipeline
 
-OmniLabel AI couples userspace intelligence with deterministic mathematical verification and cryptographic governance:
+OmniLabel AI uses a decoupled enterprise architecture comprising a high-performance **FastAPI** backend runtime, a modern **React 18** clinical SaaS dashboard, and a **Dockerized** CI/CD deployment pipeline:
 
-```mermaid
-flowchart TD
-    subgraph INTAKE ["Stage 1: ECO Intake & Provenance"]
-        ECO["Engineering Change Order\n(PDF / Unstructured Text)"] --> EXTRACT["Bounded Character-Span Extractor\n(src/extraction.py)"]
-        EXTRACT --> PROV["Provenance Hash Registry\n(src/provenance.py)\nSHA-256 Span Binding"]
-    end
-
-    subgraph DISCOVERY ["Stage 2: Uncertainty-Aware Dual Discovery"]
-        PROV --> FWD["Forward Digital Thread Engine\n(src/impact_graph.py)\nExplicit Relationship Traversal"]
-        PROV --> INV["Inverse Catalog Scanner\n(src/orphan_scan.py)\nMulti-Attribute Heuristic Scan"]
-        FWD --> COMBINE{"Dual Discovery Aggregator"}
-        INV --> COMBINE
-        COMBINE --> GATE["Safe Scope Gate\n(src/review.py)\nMandatory Human Triage Hold"]
-    end
-
-    subgraph DRAFTING ["Stage 3: Controlled Artwork Drafting"]
-        GATE -->|All Candidates Resolved| TEMPLATE["Controlled Template Engine\n(src/template_engine.py)\nJinja2 Parameterized SVG"]
-        TEMPLATE -->|Zero Hallucination| ARTWORK["Compliant Label Artworks\n(Master SVG + Rendered PNG)"]
-    end
-
-    subgraph VERIFICATION ["Stage 4: Deterministic Verification & CV"]
-        ARTWORK --> RULES["Deterministic Rules Engine\n(src/rules.py)\n• GS1 GTIN-14 Mod-10 Checksum\n• ISO 15223-1 Symbol Verification\n• Expiry Arithmetic & Date Formats"]
-        ARTWORK --> OPENCV["Computer Vision Inspection\n(src/visual_diff.py)\nOpenCV Pixel Delta & Heatmap"]
-    end
-
-    subgraph GOVERNANCE ["Stage 5: 21 CFR Part 11 Audit & Release"]
-        RULES --> AUDIT["Cryptographic Audit Ledger\n(src/audit.py)\nSHA-256 Forward Hash Chaining"]
-        OPENCV --> AUDIT
-        AUDIT --> ESIGN["21 CFR Part 11 Electronic Signature\nDual Quality / Regulatory Sign-Off"]
-        ESIGN --> DOSSIER["Regulatory Release Dossier\n(src/report.py)\nInspection-Ready Audit Export"]
-    end
+```text
+                               ┌──────────────────────────────────────────────┐
+                               │    Engineering Change Order (ECO Document)   │
+                               └──────────────────────┬───────────────────────┘
+                                                      │
+                                                      ▼
+                               ┌──────────────────────────────────────────────┐
+                               │      Bounded Character-Span Extractor        │
+                               │    (Exact Substring & SHA-256 Provenance)    │
+                               └──────────────────────┬───────────────────────┘
+                                                      │
+                        ┌─────────────────────────────┴─────────────────────────────┐
+                        │                                                           │
+                        ▼                                                           ▼
+        ┌───────────────────────────────┐                           ┌───────────────────────────────┐
+        │   Forward Digital Thread      │                           │  Independent Inverse Catalog  │
+        │   Graph Traversal (NetworkX)  │                           │   Scanner (Attribute Match)   │
+        └───────────────┬───────────────┘                           └───────────────┬───────────────┘
+                        │                                                           │
+                        │   [Known Hierarchy Links]                                 │   [Orphaned Candidate]
+                        ▼                                                           ▼
+        ┌───────────────────────────────┐                           ┌───────────────────────────────┐
+        │  4 Forward-Linked Variants    │                           │  1 Orphaned Variant Detected  │
+        └───────────────┬───────────────┘                           └───────────────┬───────────────┘
+                        │                                                           │
+                        └─────────────────────────────┬─────────────────────────────┘
+                                                      │
+                                                      ▼
+                                       ┌─────────────────────────────┐
+                                       │    SAFE REGULATORY GATE     │
+                                       │  (Blocks Release Approval   │
+                                       │   Until Triage is Complete) │
+                                       └──────────────┬──────────────┘
+                                                      │ Human QA Triage
+                                                      ▼
+                                       ┌─────────────────────────────┐
+                                       │ Controlled SVG Drafting     │
+                                       │ (Jinja2 + PyMuPDF Engine)   │
+                                       └──────────────┬──────────────┘
+                                                      │
+                                                      ▼
+                                       ┌─────────────────────────────┐
+                                       │ Deterministic Rules & CV    │
+                                       │ • GS1 GTIN-14 Mod-10 Check  │
+                                       │ • ISO 15223-1 Sterile Symbol│
+                                       │ • OpenCV Pixel Diff Heatmap │
+                                       └──────────────┬──────────────┘
+                                                      │
+                                                      ▼
+                                       ┌─────────────────────────────┐
+                                       │ 21 CFR Part 11 E-Signature  │
+                                       │ & SHA-256 Chained Ledger    │
+                                       └─────────────────────────────┘
 ```
 
 ---
@@ -153,25 +180,56 @@ High-resolution 1080p captures from the live clinical SaaS dashboard:
 ## 5. Deterministic Mathematics & Algorithms
 
 ### 5.1 GS1 GTIN-14 Modulo-10 Check Digit Calculation
-For a 14-digit Global Trade Item Number $D_1 D_2 \dots D_{14}$, the 14th digit is computed deterministically:
+For a 14-digit Global Trade Item Number $D_1 D_2 \dots D_{14}$, the 14th check digit is computed deterministically using standard GS1 alternating weights (3 for odd positions from the right, 1 for even positions):
 
-$$\text{Weighted Sum } S = \sum_{i=1}^{13} D_i \times w_i \quad \text{where } w_i = \begin{cases} 3 & \text{if } (14 - i) \text{ is odd} \\ 1 & \text{if } (14 - i) \text{ is even} \end{cases}$$
+$$\text{Weighted Sum: } \quad S = \sum_{i=1}^{13} \Big( D_i \times w_i \Big)$$
 
-$$\text{Check Digit } D_{14} = (10 - (S \bmod 10)) \bmod 10$$
+$$\text{Position Weights: } \quad w_i = \begin{cases} 3, & \text{if } (14 - i) \text{ is odd} \\ 1, & \text{if } (14 - i) \text{ is even} \end{cases}$$
 
-If $D_{14}^{\text{computed}} \neq D_{14}^{\text{actual}}$, the packaging label is blocked immediately.
+$$\text{Check Digit: } \quad D_{14} = \Big( 10 - (S \bmod 10) \Big) \bmod 10$$
+
+```python
+# Implemented in src/rules.py
+def calculate_gtin14_check_digit(digits_13: str) -> int:
+    total = sum(int(d) * (3 if (14 - i) % 2 != 0 else 1) for i, d in enumerate(digits_13, 1))
+    return (10 - (total % 10)) % 10
+```
+
+> **Validation Gate:** If $D_{14}^{\text{computed}} \neq D_{14}^{\text{actual}}$, the packaging label is blocked immediately.
+
+---
 
 ### 5.2 Inverse Catalog Scoring Function
-To determine whether an unlinked catalog SKU $k$ is an orphaned variant of an impacted family $F$:
+To detect orphaned variants disconnected from the parent digital thread, the Inverse Catalog Scanner calculates a weighted multi-attribute similarity score $\text{Score}(k, F) \in [0, 1]$ between candidate SKU $k$ and impacted product family $F$:
 
-$$\text{Score}(k, F) = w_1 \cdot \mathbb{I}(\text{FamilyCode}_k = \text{FamilyCode}_F) + w_2 \cdot \mathbb{I}(\text{Sterility}_k = \text{Sterility}_F) + w_3 \cdot \mathbb{I}(\text{ShelfLife}_k = \text{ShelfLife}_F) + w_4 \cdot \text{Jaccard}(\text{Desc}_k, \text{Desc}_F)$$
+$$\begin{aligned}
+\text{Score}(k, F) &= w_1 \cdot \mathbb{I}(\text{FamilyCode}_k = \text{FamilyCode}_F) \\
+&\quad + w_2 \cdot \mathbb{I}(\text{Sterility}_k = \text{Sterility}_F) \\
+&\quad + w_3 \cdot \mathbb{I}(\text{ShelfLife}_k = \text{ShelfLife}_F) \\
+&\quad + w_4 \cdot \text{Jaccard}(\text{Desc}_k, \text{Desc}_F)
+\end{aligned}$$
 
-Where weights $w = [0.40, 0.25, 0.20, 0.15]$. Candidates scoring $\ge 0.65$ trigger a mandatory Safe Scope Gate hold.
+Where the calibrated weights are:
+* $w_1 = 0.40$ (Family Code Match)
+* $w_2 = 0.25$ (Sterility Method Match)
+* $w_3 = 0.20$ (Pre-change Shelf Life Match)
+* $w_4 = 0.15$ (Tokenized Description Jaccard Similarity)
+
+> **Safe Scope Threshold:** Candidates scoring $\text{Score}(k, F) \ge 0.65$ trigger a mandatory Safe Scope Gate hold, blocking automated release until reviewed by qualified QA personnel.
+
+---
 
 ### 5.3 Cryptographic Hash Chain Linkage
-For event ledger entry $n$ with payload $P_n$ and genesis hash $H_0 = \text{SHA-256}(\text{"GENESIS_OMNILABEL_AI"})$:
+To satisfy FDA 21 CFR Part 11 §11.10 requirements for closed-system data integrity, each ledger event $n$ is chained to the previous record hash $H_{n-1}$, initialized from a tamper-evident genesis anchor:
 
-$$H_n = \text{SHA-256}\left(H_{n-1} + \text{EventUUID}_n + \text{Timestamp}_n + \text{EventType}_n + \text{CanonicalJSON}(P_n)\right)$$
+$$\text{Genesis Anchor: } \quad H_0 = \text{SHA-256}\Big(\texttt{"GENESIS\_OMNILABEL\_AI"}\Big)$$
+
+$$\begin{aligned}
+H_n = \text{SHA-256}\Big( &H_{n-1} \;\mathbin{\Vert}\; \text{UUID}_n \;\mathbin{\Vert}\; \text{Timestamp}_n \\
+&\;\mathbin{\Vert}\; \text{EventType}_n \;\mathbin{\Vert}\; \text{CanonicalJSON}(P_n) \Big)
+\end{aligned}$$
+
+Where $\mathbin{\Vert}$ denotes strict byte-level string concatenation and $\text{CanonicalJSON}(P_n)$ enforces deterministic RFC 8785 key-sorted serializations.
 
 ---
 
